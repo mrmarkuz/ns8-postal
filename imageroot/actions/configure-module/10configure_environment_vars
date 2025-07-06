@@ -15,3 +15,13 @@ data = json.load(sys.stdin)
 
 #This is specific to you module, so you need to change it accordingly.
 #agent.dump_env()
+MARIADB_DATABASE = data.get("MARIADB_DATABASE", "postal") 
+MARIADB_ALLOW_EMPTY_PASSWORD = data.get("MARIADB_ALLOW_EMPTY_PASSWORD", "yes") 
+MARIADB_ALLOW_EMPTY_ROOT_PASSWORD = data.get("MARIADB_ALLOW_EMPTY_ROOT_PASSWORD", "yes") 
+ 
+mariadb = { 
+ "MARIADB_DATABASE" : MARIADB_DATABASE ,
+ "MARIADB_ALLOW_EMPTY_PASSWORD" : MARIADB_ALLOW_EMPTY_PASSWORD ,
+ "MARIADB_ALLOW_EMPTY_ROOT_PASSWORD" : MARIADB_ALLOW_EMPTY_ROOT_PASSWORD ,
+} 
+agent.write_envfile("mariadb.env", mariadb) 
